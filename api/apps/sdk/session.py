@@ -45,7 +45,7 @@ def create(tenant_id,chat_id):
         "id": get_uuid(),
         "dialog_id": req["dialog_id"],
         "name": req.get("name", "New session"),
-        "message": [{"role": "assistant", "content": "Hi! I am your assistant，can I help you?"}]
+        "message": [{"role": "assistant", "content": dia.prompt_config["prologue"]}]
     }
     if not conv.get("name"):
         return get_error_data_result(message="`name` can not be empty.")
