@@ -184,7 +184,7 @@ class OpenAITTS(Base):
             "Content-Type": "application/json"
         }
 
-    def tts(self, text, voice="alloy"):
+    def tts(self, text, voice="onyx"):
         text = self.normalize_text(text)
         payload = {
             "model": self.model_name,
