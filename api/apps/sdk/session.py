@@ -41,11 +41,16 @@ def create(tenant_id,chat_id):
     dia = DialogService.query(tenant_id=tenant_id, id=req["dialog_id"], status=StatusEnum.VALID.value)
     if not dia:
         return get_error_data_result(message="You do not own the assistant.")
+    
+    # Check if dia list has at least one value
+    if not dia.size:
+        return get_error_data_result(message="Assistant not found.")
+
     conv = {
         "id": get_uuid(),
         "dialog_id": req["dialog_id"],
         "name": req.get("name", "New session"),
-        "message": [{"role": "assistant", "content": dia.prompt_config["prologue"]}]
+        "message": [{"role": "assistant", "content": dia[0].prompt_config["prologue"]}]
     }
     if not conv.get("name"):
         return get_error_data_result(message="`name` can not be empty.")
