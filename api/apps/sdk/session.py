@@ -189,7 +189,7 @@ def completion(tenant_id, chat_id):
         nonlocal dia, msg, req, conv
         try:
             for ans in chat(dia, msg, **req):
-                fillin_conv(ans)
+                # fillin_conv(ans)
                 yield "data:" + json.dumps({"code": 0,  "data": ans}, ensure_ascii=False) + "\n\n"
             ConversationService.update_by_id(conv.id, conv.to_dict())
         except Exception as e:
