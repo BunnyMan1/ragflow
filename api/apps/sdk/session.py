@@ -211,7 +211,7 @@ def completion(tenant_id, chat_id):
         answer = None
         for ans in chat(dia, msg, **req):
             answer = ans
-            fillin_conv(ans)
+            # fillin_conv(ans)
             ConversationService.update_by_id(conv.id, conv.to_dict())
             break
         return get_result(data=answer)
